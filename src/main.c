@@ -43,7 +43,7 @@
 #include "spi.h"
 #include "rfm69.h"
 
-#ifdef defined(GATEWAY) || defined(DEBUG) || defined(GPS)
+#if defined(GATEWAY) || defined(DEBUG) || defined(GPS)
     #include "uart.h"
 #endif
 
