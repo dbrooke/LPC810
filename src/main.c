@@ -77,8 +77,14 @@ void configurePins() {
     LPC_SYSCON->SYSAHBCLKCTRL |= (1<<7);
     
     /* Pin Assign 8 bit Configuration */
+#ifdef ADC
     /* U0_TXD */
     LPC_SWM->PINASSIGN0 = 0xffffff00UL;
+#else
+    /* U0_TXD */
+    /* U0_RXD */
+    LPC_SWM->PINASSIGN0 = 0xffff0001UL;
+#endif
     /* SPI0_SCK */
     LPC_SWM->PINASSIGN3 = 0x02ffffffUL;
     /* SPI0_MOSI */
@@ -86,9 +92,13 @@ void configurePins() {
     /* SPI0_SSEL */
     LPC_SWM->PINASSIGN4 = 0xff050304UL;
     
+#ifdef ADC
     /* Pin Assign 1 bit Configuration */
     /* ACMP_I2 */
     LPC_SWM->PINENABLE0 = 0xfffffffdUL;
+#else
+    LPC_SWM->PINENABLE0 = 0xffffffffUL;
+#endif
     
 }
 
